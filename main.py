@@ -28,7 +28,7 @@ print()
 # in incognito mode
 # without opening the browser dialog
 options = Options()
-options.add_argument("--headless")
+#options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--window-size=1920x1080")
@@ -40,7 +40,7 @@ driver.get(link) # make request
 try:
     # scroll down to the bottom of the page
     driver.execute_script("window.scrollTo(0,document.body.clientHeight)") 
-    time.sleep(1)
+    time.sleep(3)
 
     page_source = driver.page_source
 
@@ -202,8 +202,14 @@ try:
     final_score = order_score + reputation_score + product_score + pricing_score
 
     print(payload)
-    print(order_score, reputation_score, product_score, pricing_score)
-    print("Product score", final_score)
+    print()
+    #print(order_score, reputation_score, product_score, pricing_score)
+    print("OrdaMe score", final_score)
+
+    if final_score > 75:
+        print("Add to cart")
+    else:
+        print("Warning: Consider carefully.")
 
 finally:
     driver.quit()
